@@ -99,9 +99,9 @@ During regular browsing, when the user navigates to a registered page, the
 browser creates a PVT request to the registered endpoint. The browser stores the
 returned PVTs to redeem during private browsing mode.
 
-* The browser sends a token challenge when the following conditions are met.
+The browser sends a token challenge when the following conditions are met.
 * The browser is in the process of creating a request to an origin with https
-  scheme where eTLD+1 is registered
+  scheme where eTLD+1 is registered.
 * The request is created in a regular browsing session. Meaning persisting data
   after the page is closed is appropriate.
 * The number of existing tokens for the corresponding eTLD+1 is below a
