@@ -73,7 +73,8 @@ users to transfer the trust they have established in regular browsing into
 private browsing mode to reduce their experienced user friction.
 
 PVTs can be considered as a solution to a subset of the requirements listed in
-the PACT proposal. We believe experimentation in this area may help in broader
+the [PACT proposal](https://github.com/antifraudcg/proposals/issues/22). 
+We believe experimentation in this area may help in broader
 development of open and private ecosystem solutions, as PACT aims to do. For a
 detailed comparison see section titled "Comparison to PACT".
 
