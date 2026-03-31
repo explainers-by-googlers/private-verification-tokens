@@ -1,10 +1,10 @@
-# Explainer for the TODO API
+# Explainer for the Private Verification Tokens
 
 **Instructions for the explainer author: Search for "todo" in this repository and update all the
 instances as appropriate. For the instances in `index.bs`, update the repository name, but you can
 leave the rest until you start the specification. Then delete the TODOs and this block of text.**
 
-This proposal is an early design sketch by [TODO: team] to describe the problem below and solicit
+This proposal is an early design sketch by Chrome PVT team to describe the problem below and solicit
 feedback on the proposed solution. It has not been approved to ship in Chrome.
 
 TODO: Fill in the whole explainer template below using https://tag.w3.org/explainers/ as a
@@ -17,7 +17,7 @@ reference. Look for [brackets].
 - [etc.]
 
 ## Participate
-- https://github.com/explainers-by-googlers/[your-repository-name]/issues
+- https://github.com/explainers-by-googlers/private-verification-tokens/issues
 - [Discussion forum]
 
 ## Table of Contents [if the explainer is longer than one printed page]
@@ -51,15 +51,31 @@ reference. Look for [brackets].
 
 ## Introduction
 
-[The "executive summary" or "abstract".
-Explain in a few sentences what the goals of the project are,
-and a brief overview of how the solution works.
-This should be no more than 1-2 paragraphs.]
+Private Verification Tokens (PVT) is a low-entropy mechanism for users to
+transfer the trust they have established in regular browsing into private
+browsing mode to reduce their experienced friction.
 
 ## Goals
 
-[What is the **end-user need** which this project aims to address? Make this section short, and
-elaborate in the Use cases section.]
+Automated traffic is increasing across the web, and many websites have responded
+by adding more user friction to combat unwanted traffic. Added challenges like
+CAPTCHAs degrade the web user experience for all users, with a particularly
+outsized impact to users in private browsing modes, i.e., modes where session
+data is cleared at exit. That’s because automation in the form of crawlers,
+bots, agents, will sometimes employ tactics like clearing their state and
+rotating their fingerprints, to appear as a new user.  Unfortunately, these
+automated clients appear very similar to users in private browsing modes who
+also have a newly cleared state, and so sites, unable to differentiate the two
+groups, prompt both with challenges to detect bots or assert humanness verdicts.
+
+We propose Private Verification Tokens (PVT) as a low-entropy mechanism for
+users to transfer the trust they have established in regular browsing into
+private browsing mode to reduce their experienced user friction.
+
+PVTs can be considered as a solution to a subset of the requirements listed in
+the PACT proposal. We believe experimentation in this area may help in broader
+development of open and private ecosystem solutions, as PACT aims to do. For a
+detailed comparison see section titled "Comparison to PACT".
 
 ## Non-goals
 
