@@ -91,7 +91,43 @@ similar to [Private State Token (PST)
 registration](https://github.com/GoogleChrome/private-tokens/blob/main/PST-Registration.md).
 We say an origin/publisher/page is registered if its eTLD+1 is registered.
 
-![alt text](https://github.com/explainers-by-googlers/private-verification-tokens/blob/main/PVT_issuance_and_redemption.png "PVT issuance and redemption")
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'actorTextColor': '#000000', 'actorBkg': '#ddeeff', 'actorBorder': '#336699', 'actorLineColor': '#336699', 'signalColor': '#000000', 'signalTextColor': '#000000', 'labelTextColor': '#000000', 'loopTextColor': '#000000', 'noteBkgColor': '#fff5dd', 'noteTextColor': '#000000', 'noteBorderColor': '#cc9900', 'activationBkgColor': '#ddeeff', 'activationBorderColor': '#336699', 'fontFamily': 'arial', 'fontSize': '14px'}}}%%
+sequenceDiagram
+    participant BR as Browser (Regular)
+    participant BP as Browser (Private)
+    participant OW as Origin (Website Frontend)
+    participant OE as Origin (PVT Endpoint)
+
+    rect rgb(232, 208, 240)
+    note over BR: Fetch list of registered sites, their issuer path, and public keys
+
+    BR->>OW: 1. Request to webpage
+    OW->>BR: 2. Response with page content
+    note over BR: 3. Construct token request if registered origin and new tokens are needed.
+    BR->>OE: 4. Send token issuance request to issuer URL
+
+    note over OE: 5. Hidden metadata selected by issuer.
+
+    OE->>BR: 6. TokenResponse containing hidden metadata
+
+    note over BR: 7. Verify token response proof and store Token in site data
+    end
+
+    note over BR,BP: Token storage shared across regular and private.
+
+    rect rgb(100, 100, 100)
+    note over BR,OE: Later...
+
+    BP->>OW: Request to webpage, token in Sec-Private-Verification-Token header
+    OW->>OE: Verify token
+
+    note over OE: 10. Extract hidden metadata from token
+
+    OE->>OW: 11. Return verdict based on hidden metadata
+    OW->>BP: 12. Skip CAPTCHA if pass verdict
+    end
+```
 
 ### Token Issuance
 
@@ -151,7 +187,22 @@ proxy server and Origin (PVT Endpoint). PVT Proxy Server should identify itself
 as the PVT Proxy. PVT endpoints are required to respond to PVT Proxy Server
 token requests.
 
-![alt text](https://github.com/explainers-by-googlers/private-verification-tokens/blob/main/PVT_initialize_cache.png "PVT cache initialization")
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'actorTextColor': '#000000', 'actorBkg': '#ddeeff', 'actorBorder': '#336699', 'actorLineColor': '#336699', 'signalColor': '#000000', 'signalTextColor': '#000000', 'labelTextColor': '#000000', 'loopTextColor': '#000000', 'noteBkgColor': '#fff5dd', 'noteTextColor': '#000000', 'noteBorderColor': '#cc9900', 'activationBkgColor': '#ddeeff', 'activationBorderColor': '#336699', 'fontFamily': 'arial', 'fontSize': '14px'}}}%%
+sequenceDiagram
+    participant C as Chrome
+    participant PS as PVT Proxy Server
+    participant OE as Origin (PVT Endpoint)
+
+    rect rgb(221, 238, 255)
+    note over C: At a convenient time
+
+    C->>PS: Token challenge
+    PS->>OE: Token challenge
+    OE->>PS: PVTs
+    PS->>C: PVTs
+    end
+```
 
 ## Request/Response Details
 
