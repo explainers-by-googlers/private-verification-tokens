@@ -151,7 +151,7 @@ proxy server and Origin (PVT Endpoint). PVT Proxy Server should identify itself
 as the PVT Proxy. PVT endpoints are required to respond to PVT Proxy Server
 token requests.
 
-![alt text](https://github.com/explainers-by-googlers/private-verification-tokens/blob/main/PVT_initialize_cache.svg "PVT cache initialization")
+![alt text](https://github.com/explainers-by-googlers/private-verification-tokens/blob/main/PVT_initialize_cache.png "PVT cache initialization")
 
 ## Request/Response Details
 
