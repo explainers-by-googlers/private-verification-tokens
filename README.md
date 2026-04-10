@@ -197,10 +197,10 @@ sequenceDiagram
     rect rgb(221, 238, 255)
     note over C: At a convenient time
 
-    C->>PS: Token challenge
-    PS->>OE: Token challenge
-    OE->>PS: PVTs
-    PS->>C: PVTs
+    C->>PS: Token challenge, no cookies
+    PS->>OE: Token challenge, no cookies
+    OE->>PS: PVTs with default value
+    PS->>C: PVTs with default value
     end
 ```
 
