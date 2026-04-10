@@ -119,7 +119,7 @@ sequenceDiagram
     rect rgb(200, 200, 200)
     note over BR,OE: Later...
 
-    BP->>OW: Request to webpage, token in Sec-Private-Verification-Token header
+    BP->>OW: Request to webpage, token in Sec-Private-Verification-Token header.\nToken is taken from cache with some probability\nin order to defend against private mode detection.
     OW->>OE: Verify token
 
     note over OE: 10. Extract hidden metadata from token
