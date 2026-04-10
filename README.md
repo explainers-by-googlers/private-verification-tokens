@@ -116,7 +116,7 @@ sequenceDiagram
 
     note over BR,BP: Token storage shared across regular and private.
 
-    rect rgb(100, 100, 100)
+    rect rgb(200, 200, 200)
     note over BR,OE: Later...
 
     BP->>OW: Request to webpage, token in Sec-Private-Verification-Token header
