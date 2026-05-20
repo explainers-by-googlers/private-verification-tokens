@@ -234,7 +234,7 @@ The browser stores tokens on disk to persist between restarts.
 
 ### Token Redemption
 
-Tokens are added to the `Sec-Private-Verification-Tokens` header. This header will
+Tokens are added to the `Sec-Private-Verification-Token` header. This header will
 contain a base64 encoding of a single serialized token. PVTs are serialized
 following [rfc9578#section-5.3](https://www.rfc-editor.org/rfc/rfc9578.html#section-5.3).
 
