@@ -251,8 +251,57 @@ they have.
 
 ## Registration Process
 
-PVTs will work for the registered origins. Registration process is TBD and will
-be added here once finalized. The list of registered eTLD+1s can be pushed to
+PVTs will work for the registered origins. Registration process is explained in
+[REGISTRATION.md](https://github.com/aykutbulut/private-verification-tokens/blob/main/README.md).
+
+### Key Commtiment Endpoint Requirements
+
+Issuers will specify a key commitment endpoint during registration. The key commitment
+endpoint must return a response in the following form.
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: <Length of response>
+
+<JSON response>
+```
+
+where response is a [JSON object](https://datatracker.ietf.org/doc/html/rfc7159#section-4)
+with the following name/value pairs.
+
+* Name `domain`, value [string](https://datatracker.ietf.org/doc/html/rfc7159#section-7).
+  The string must be a registrable domain of the `issuer_origin`.
+* Name `issuer_origin`, value string. The value must be a valid URL. The URL must have https
+  scheme. The URL must have same registrable domain (eTLD+1) as the one specified in `domain`.
+* Name `version`, value must be an integer. Indicates the PVT version. The value must fit
+  int32. The browser will ignore if the version is not supported.
+* Name `public_key`, value base64 encoding of the public key. Public key is parsed based on
+  the crypto parameters deduced from the value of the `version`.
+* Name `key_id`, value integer. Key id must fit into uint8. Key id will be used in token
+  requests as specified in the privacy pass specs.
+* Name `expiration`, value *string*. Expiration must fit into int64. Expiration is
+  in number of seconds since the unix epoch. The browser will stop using the `public_key` past
+  expiration date.
+* Name `redeemer_origin`, value [array](https://datatracker.ietf.org/doc/html/rfc7159#section-5)
+  of strings. Strings must be valid web origins. The scheme must be https.
+
+For an example see the demo key commitment endpoint
+[https://privatetokens.dev/.well-known/private-verification-token/key-commitment](https://privatetokens.dev/.well-known/private-verification-token/key-commitment), which returns (on June 8th 20206)
+
+```
+{
+"domain": "privatetokens.dev",
+"issuer_origin": "https://pvtissuer.privatetokens.dev",
+"version": 1,
+"public_key": "AyuAAk7oGNcJGWeAqEr/4IeJ9XFSn8zBrM4H7qLfL8ZfA19qbrhL6pwTYRFUar2GQ8R8O0PlPp56h5a6G5JNCU4Dt/Ft8K2Cy9i9agTtQnEHrdWj1LqEDps0Gju6wdm3/hk=",
+"key_id": 3,
+"expiration": "184368811",
+"redeemer_origin": ["https://privatetokens.dev"]
+}
+```
+
+The list of registered issuers can be pushed to
 the browsers together with public keys through mechanisms similar to Chrome's
 [component updater](https://chromium.googlesource.com/chromium/src/+/lkgr/components/component_updater/README.md).
 
