@@ -283,7 +283,7 @@ with the following name/value pairs.
 * Name `expiration`, value *string*. Expiration must fit into int64. Expiration is
   in number of seconds since the unix epoch. The browser will stop using the `public_key` past
   expiration date.
-* Name `redeemer_origin`, value [array](https://datatracker.ietf.org/doc/html/rfc7159#section-5)
+* Name `redeemer_origins`, value [array](https://datatracker.ietf.org/doc/html/rfc7159#section-5)
   of strings. Strings must be valid web origins. The scheme must be https.
 
 For an example see the demo key commitment endpoint
@@ -297,7 +297,7 @@ For an example see the demo key commitment endpoint
 "public_key": "AyuAAk7oGNcJGWeAqEr/4IeJ9XFSn8zBrM4H7qLfL8ZfA19qbrhL6pwTYRFUar2GQ8R8O0PlPp56h5a6G5JNCU4Dt/Ft8K2Cy9i9agTtQnEHrdWj1LqEDps0Gju6wdm3/hk=",
 "key_id": 3,
 "expiration": "184368811",
-"redeemer_origin": ["https://privatetokens.dev"]
+"redeemer_origins": ["https://privatetokens.dev"]
 }
 ```
 
