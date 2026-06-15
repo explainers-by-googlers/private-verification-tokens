@@ -1,0 +1,9 @@
+{
+    "https://privatetokens.dev": {
+        "name": "Chromium PVT Demo Key Commitment Endpoint",
+        "contact": "private-verification-tokens-chrome-team@google.com",
+	"endpoint": "https://privatetokens.dev/.well-known/private-verification-token/key-commitment",
+        "batchSize": 10,
+	"expiry": "1762991999"
+    }
+}
